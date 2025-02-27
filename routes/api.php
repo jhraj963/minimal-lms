@@ -24,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('courses', CourseController::class);
 Route::apiResource('courses.modules', ModuleController::class);
 Route::apiResource('modules.lectures', LectureController::class);
+Route::get('/modules/{moduleId}/lectures', [LectureController::class, 'index']);
+Route::post('/courses/{courseId}/modules/{moduleId}/lectures', [LectureController::class, 'store']);

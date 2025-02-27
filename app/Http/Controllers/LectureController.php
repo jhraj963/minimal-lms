@@ -7,30 +7,33 @@ use Illuminate\Http\Request;
 
 class LectureController extends Controller
 {
-    // Get all lectures of a specific module
+
     public function index($moduleId)
     {
         return Lecture::where('module_id', $moduleId)->get();
     }
 
-    // Create a new lecture for a specific module
-    public function store(Request $request, $moduleId)
-    {
+    public function store(Request $request,
+        $courseId,
+        $moduleId
+    ) {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|string',
             'video_url' => 'required|url',
-            'pdf_notes' => 'nullable',
-            // 'pdf_notes' => 'nullable|array',
+            'pdf_notes' => 'nullable|string',
         ]);
 
-        $lecture = new Lecture($request->all());
+        $lecture = new Lecture();
+        $lecture->title = $request->title;
+        $lecture->video_url = $request->video_url;
+        $lecture->pdf_notes = $request->pdf_notes;
         $lecture->module_id = $moduleId;
         $lecture->save();
 
-        return $lecture;
+        return response()->json(['message' => 'Lecture added successfully!', 'lecture' => $lecture], 201);
     }
 
-    // Update a lecture
+    // Update lecture
     public function update(Request $request, $id)
     {
         $lecture = Lecture::findOrFail($id);
