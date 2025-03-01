@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('module_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('video_url');
-            $table->json('pdf_notes');
+            $table->string('pdf_notes');
             $table->timestamps();
         });
     }
