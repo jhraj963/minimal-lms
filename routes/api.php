@@ -32,3 +32,10 @@ Route::apiResource('courses.modules', ModuleController::class);
 Route::apiResource('modules.lectures', LectureController::class);
 Route::get('/modules/{moduleId}/lectures', [LectureController::class, 'index']);
 Route::post('/courses/{courseId}/modules/{moduleId}/lectures', [LectureController::class, 'store']);
+Route::prefix('courses/{course}')->group(function () {
+    Route::get('modules', [ModuleController::class, 'index']);       // List modules
+    Route::get('modules/{module}', [ModuleController::class, 'show']); // Fetch single module
+    Route::post('modules', [ModuleController::class, 'store']);      // Create module
+    Route::put('modules/{module}', [ModuleController::class, 'update']); // Update module
+    Route::delete('modules/{module}', [ModuleController::class, 'destroy']); // Delete module
+});
