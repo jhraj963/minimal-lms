@@ -39,3 +39,12 @@ Route::prefix('courses/{course}')->group(function () {
     Route::put('modules/{module}', [ModuleController::class, 'update']); // Update module
     Route::delete('modules/{module}', [ModuleController::class, 'destroy']); // Delete module
 });
+// Route::prefix('courses/{course}')->group(function () {
+//     Route::prefix('modules/{module}')->group(function () {
+//         Route::get('courses/{courseId}/modules/{moduleId}/lectures', [LectureController::class, 'index']);
+//         Route::get('lectures/{lecture}', [LectureController::class, 'show']); // Fetch single lecture
+//         Route::post('lectures', [LectureController::class, 'store']);      // Create lecture
+//         Route::put('lectures/{lecture}', [LectureController::class, 'update']); // Update lecture
+//         Route::delete('lectures/{lecture}', [LectureController::class, 'destroy']); // Delete lecture
+//     });
+// });
